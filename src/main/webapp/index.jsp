@@ -1,36 +1,55 @@
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+/*!
+* Start Bootstrap - Freelancer v7.0.7 (https://startbootstrap.com/theme/freelancer)
+* Copyright 2013-2023 Start Bootstrap
+* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-freelancer/blob/master/LICENSE)
+*/
+//
+// Scripts
+// 
 
-<div id="mainVisual" data-aos="fade-down">
-	<div class="main_txt">
-        <p class="btxt" data-aos="fade-up" data-aos-delay="400">Your Global 
-        Manufacturing Partner</p>
-        <div class="stxt" data-aos="fade-up" data-aos-delay="600">첨단 기술과 전문 지식을 바탕으로 고객의 요구를 충족시키고
-        더 나은 세상을 위해 노력합니다.</div>
-        <div class="controls" data-aos="fade-up" data-aos-delay="800">
-            <div class="circle">
-                <div class="autoplay-progress">
-                    <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="20"></circle></svg>
-                    <span class="bg"></span>
-                </div>
-                <div class="play">
-                    <div class="swiper-pause"><span class="material-symbols-outlined">pause</span></div>
-                    <div class="swiper-play"><span class="material-symbols-outlined">play_arrow</span></div>
-                </div>
-            </div>
-            <div class="arrow">
-                <span class="prev"><i class="material-symbols-outlined">west</i></span>
-                <div class="pager"></div>        
-                <span class="next"><i class="material-symbols-outlined">east</i></span>
-            </div>        
-        </div>
-    </div>
-    <div class="main_slide swiper-container">
-        <ul class="swiper-wrapper">
-            <li class="swiper-slide"><div data-swiper-parallax-x="40%" class="bg bg01"></div></li> 
-            <li class="swiper-slide"><div data-swiper-parallax-x="40%" class="bg bg02"></div></li> 
-            <li class="swiper-slide"><div data-swiper-parallax-x="40%" class="bg bg03"></div></li> 
-        </ul>
-    </div>
-    <div class="scroll">SCROLL DOWN<span></span></div>
-</div>
+window.addEventListener('DOMContentLoaded', event => {
+
+    // Navbar shrink function
+    var navbarShrink = function () {
+        const navbarCollapsible = document.body.querySelector('#mainNav');
+        if (!navbarCollapsible) {
+            return;
+        }
+        if (window.scrollY === 0) {
+            navbarCollapsible.classList.remove('navbar-shrink')
+        } else {
+            navbarCollapsible.classList.add('navbar-shrink')
+        }
+
+    };
+
+    // Shrink the navbar 
+    navbarShrink();
+
+    // Shrink the navbar when page is scrolled
+    document.addEventListener('scroll', navbarShrink);
+
+    // Activate Bootstrap scrollspy on the main nav element
+    const mainNav = document.body.querySelector('#mainNav');
+    if (mainNav) {
+        new bootstrap.ScrollSpy(document.body, {
+            target: '#mainNav',
+            rootMargin: '0px 0px -40%',
+        });
+    };
+
+    // Collapse responsive navbar when toggler is visible
+    const navbarToggler = document.body.querySelector('.navbar-toggler');
+    const responsiveNavItems = [].slice.call(
+        document.querySelectorAll('#navbarResponsive .nav-link')
+    );
+    responsiveNavItems.map(function (responsiveNavItem) {
+        responsiveNavItem.addEventListener('click', () => {
+            if (window.getComputedStyle(navbarToggler).display !== 'none') {
+                navbarToggler.click();
+            }
+        });
+    });
+
+});
 
